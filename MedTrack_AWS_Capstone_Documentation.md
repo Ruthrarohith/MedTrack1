@@ -86,10 +86,8 @@ MedTrack addresses these challenges by providing:
 |---------|---------|---------------|
 | **AWS EC2** | Application hosting and compute | t2.micro instance, Amazon Linux 2 |
 | **AWS DynamoDB** | NoSQL database for all data storage | 8 tables with on-demand billing |
-| **AWS SNS** | Notification service (Email/SMS) | Topic-based pub/sub messaging |
+| **AWS SNS** | Notification service (Email) | Topic-based pub/sub messaging |
 | **AWS IAM** | Identity and access management | Role-based permissions |
-| **AWS VPC** | Network isolation and security | Custom VPC with security groups |
-| **AWS CloudWatch** | Monitoring and logging | Application and infrastructure metrics |
 
 ### 2.2 Service Integration Architecture
 

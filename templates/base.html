@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedTrack | {% block title %}Patient Journey System{% endblock %}</title>
+
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('index') }}"
+        style="display: flex; align-items: center; gap: 0.75rem; color: inherit; text-decoration: none;">
+        <img src="{{ url_for('static', filename='medtrack_logo.png') }}" alt="MedTrack" style="height: 32px;">
+        <span>MedTrack</span>
+      </a>
+    </div>
+
+    <div class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+
+      {% if current_role == 'patient' %}
+      <a href="{{ url_for('patient_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('patient_assistant') }}">AI Companion</a>
+      <a href="{{ url_for('patient_chat') }}">Chat</a>
+      <a href="{{ url_for('book_appointment') }}">Book</a>
+      <a href="{{ url_for('patient_invoices') }}">Invoices</a>
+      <a href="{{ url_for('patient_vault') }}">Vault</a>
+
+      <button onclick="toggleEmergency()" class="btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+        <i class="fas fa-ambulance"></i> SOS
+      </button>
+      {% elif current_role == 'doctor' %}
+      <a href="{{ url_for('doctor_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('doctor_chat_view') }}">Messages</a>
+      {% endif %}
+
+      {% if session.get('user_id') %}
+      <span
+        style="display: flex; align-items: center; background: rgba(13, 148, 136, 0.1); padding: 0.2rem 0.8rem; border-radius: 2rem; color: var(--primary-color);">
+        <i class="fas fa-user-circle" style="margin-right: 0.5rem;"></i> {{ session.get('user_name') }}
+      </span>
+      <a href="{{ url_for('logout') }}" class="btn-secondary"
+        style="padding: 0.5rem 1rem; font-size: 0.9rem;">Logout</a>
+      {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('signup') }}" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Sign Up</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  <div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+      {{ message }}
+      <i class="fas fa-times" onclick="this.parentElement.style.display='none'"
+        style="float: right; cursor: pointer; margin-left: 10px;"></i>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 MedTrack. All rights reserved.</p>
+  </footer>
+
+  <!-- Emergency Modal -->
+  <div id="emergencyModal"
+    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div class="card"
+      style="background: white; padding: 2rem; max-width: 400px; width: 90%; text-align: center; border: 2px solid #ef4444;">
+      <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
+      <h2 style="color: #ef4444; margin: 0 0 0.5rem 0;">Emergency Contacts</h2>
+      <p style="color: #6b7280; margin-bottom: 1.5rem;">For immediate assistance, please call the following numbers:</p>
+
+      <a href="tel:911"
+        style="display: block; background: #ef4444; color: white; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.25rem; margin-bottom: 1rem;">
+        <i class="fas fa-phone-alt"></i> 911 (Ambulance)
+      </a>
+      <a href="tel:+1-800-MED-HELP"
+        style="display: block; background: #f3f4f6; color: #374151; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+        <i class="fas fa-phone"></i> +1-800-MED-HELP
+      </a>
+
+      <button onclick="toggleEmergency()"
+        style="margin-top: 1.5rem; background: transparent; border: none; color: #6b7280; cursor: pointer; text-decoration: underline;">Close</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+    function toggleEmergency() {
+      const modal = document.getElementById('emergencyModal');
+      // Because we want flex for centering, we toggle 'flex' and 'none'
+      const isVisible = modal.style.display === 'flex';
+      modal.style.display = isVisible ? 'none' : 'flex';
+    }
+  </script>
+
+</body>
+
+</html>

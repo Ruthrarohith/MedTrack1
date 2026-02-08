@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 1000px; margin: 0 auto;">
+    <h2 class="text-gradient" style="margin-bottom: 0.5rem;">AI Health Companion</h2>
+    <p style="color: #6b7280; margin-bottom: 2rem;">Your personal medical assistant.</p>
+
+    <!-- Chat Interface -->
+    <div class="glass-panel" style="height: 600px; display: flex; flex-direction: column; padding: 0;">
+        <div id="chat-history"
+            style="flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Welcome Message -->
+            <div style="display: flex; gap: 1rem;">
+                <div
+                    style="width: 36px; height: 36px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div style="background: #f3f4f6; padding: 1rem; border-radius: 12px; max-width: 70%; line-height: 1.6;">
+                    Hello! I'm your MedTrack AI Assistant. I can help interpret symptoms or guide you through the app.
+                    How are you feeling today?
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 1.5rem; border-top: 1px solid #f3f4f6; background: white;">
+            <form onsubmit="sendAiMessage(event)" style="display: flex; gap: 1rem;">
+                <input type="text" id="ai-input" class="form-input" placeholder="Type your symptoms or question..."
+                    required>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function sendAiMessage(e) {
+        e.preventDefault();
+        const input = document.getElementById('ai-input');
+        const text = input.value;
+        if (!text) return;
+
+        // Add User Message
+        const history = document.getElementById('chat-history');
+        history.innerHTML += `
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <div style="background: var(--primary); color: white; padding: 1rem; border-radius: 12px; max-width: 70%; line-height: 1.6;">
+                    ${text}
+                </div>
+            </div>
+        `;
+        input.value = '';
+        history.scrollTop = history.scrollHeight;
+
+        // Simulate Typing
+        const loadingId = 'loading-' + Date.now();
+        history.innerHTML += `
+            <div id="${loadingId}" style="display: flex; gap: 1rem;">
+                <div style="width: 36px; height: 36px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div style="background: #f3f4f6; padding: 1rem; border-radius: 12px; color: #6b7280;">
+                    <i class="fas fa-ellipsis-h fa-beat"></i>
+                </div>
+            </div>
+        `;
+        history.scrollTop = history.scrollHeight;
+
+        // Fetch AI Response
+        try {
+            const response = await fetch('/api/ai/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+            const data = await response.json();
+
+            // Remove loading
+            document.getElementById(loadingId).remove();
+
+            // Add AI Message
+            history.innerHTML += `
+                <div style="display: flex; gap: 1rem;">
+                    <div style="width: 36px; height: 36px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div style="background: #f3f4f6; padding: 1rem; border-radius: 12px; max-width: 70%; line-height: 1.6;">
+                        ${data.reply}
+                    </div>
+                </div>
+            `;
+            history.scrollTop = history.scrollHeight;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    // Check if we just did an analysis to switch tab
+    {% if analysis_result %}
+    switchTab('analyze');
+    {% endif %}
+</script>
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="background-color: #f8f9fa; min-height: 100%; padding-bottom: 2rem;">
+    <!-- Dashboard Header -->
+    <div style="margin-bottom: 2rem;">
+        <h1 style="color: #1e293b; font-size: 1.8rem; margin: 0; font-weight: 700;">Dashboard</h1>
+        <div style="font-size: 0.9rem; color: #64748b; margin-top: 0.2rem;">
+            Home &gt; <span style="color: #2563eb;">Dashboard</span>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+        <!-- Card 1: Department -->
+        <a href="#" style="text-decoration: none; cursor: default;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Department</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.departments }}</div>
+                </div>
+                <div
+                    style="background: #ecfdf5; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #059669;">
+                    <i class="fas fa-sitemap" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 2: Doctor -->
+        <a href="{{ url_for('admin_doctors') }}" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Doctor</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.doctors }}</div>
+                </div>
+                <div
+                    style="background: #f0fdf4; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #16a34a;">
+                    <i class="fas fa-user-md" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 3: Patient -->
+        <a href="{{ url_for('admin_patients') }}" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Patient</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.patients }}</div>
+                </div>
+                <div
+                    style="background: #d1fae5; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #047857;">
+                    <i class="fas fa-user-injured" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 4: Appointments -->
+        <a href="{{ url_for('admin_appointments') }}" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Total Appointment</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.appointments }}</div>
+                </div>
+                <div
+                    style="background: #fefce8; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ca8a04;">
+                    <i class="fas fa-calendar-check" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Row 2 -->
+        <!-- Card 5: Case Studies -->
+        <a href="{{ url_for('admin_records') }}" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Medical Records</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.records }}</div>
+                </div>
+                <div
+                    style="background: #fefce8; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ca8a04;">
+                    <i class="fas fa-file-medical" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 6: Invoice -->
+        <a href="{{ url_for('admin_invoices') }}" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Invoices</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.invoices }}</div>
+                </div>
+                <div
+                    style="background: #ecfdf5; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #059669;">
+                    <i class="fas fa-file-invoice-dollar" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 7: Prescriptions -->
+        <a href="{{ url_for('admin_records') }}?type=prescription" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Prescriptions</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">{{ stats.appointments }}</div>
+                    <!-- Proxy -->
+                </div>
+                <div
+                    style="background: #f0fdf4; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #16a34a;">
+                    <i class="fas fa-pills" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 8: Payment -->
+        <a href="{{ url_for('admin_invoices') }}" style="text-decoration: none;">
+            <div
+                style="background: white; border-radius: 12px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: start; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s;">
+                <div>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">Payments</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: #1e293b;">0</div> <!-- Mock -->
+                </div>
+                <div
+                    style="background: #d1fae5; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #047857;">
+                    <i class="fas fa-credit-card" style="font-size: 1.2rem;"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Charts Row -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+        <!-- Monthly Users Chart -->
+        <div
+            style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+            <h3 style="margin: 0 0 1.5rem 0; color: #334155; font-size: 1.1rem;">Monthly Registered Users</h3>
+            <div style="height: 300px;">
+                <canvas id="userChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Earnings Panel -->
+        <div
+            style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3 style="margin: 0; color: #334155; font-size: 1.1rem;">Monthly Earning</h3>
+                <span
+                    style="background: #0f766e; color: white; padding: 0.2rem 0.8rem; border-radius: 6px; font-size: 0.8rem;">Weekly</span>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <div style="color: #64748b; font-size: 0.9rem;">Total Income</div>
+                <div style="font-size: 2rem; font-weight: 700; color: #1e293b;">₹{{ stats.pending_income if stats.income
+                    == 0 else stats.income }}</div>
+                <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem;">
+                    <i class="fas fa-arrow-down"></i> From Previous week (Mock)
+                </div>
+            </div>
+
+            <!-- Simple Circles for Analytics -->
+            <div style="display: flex; justify-content: space-around;">
+                <div style="text-align: center;">
+                    <div
+                        style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid #eff6ff; border-top-color: #10b981; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+                        <span style="color: #10b981; font-weight: bold;">40%</span>
+                    </div>
+                    <span style="font-size: 0.8rem; color: #64748b;">1st 15 days</span>
+                </div>
+                <div style="text-align: center;">
+                    <div
+                        style="width: 80px; height: 80px; border-radius: 50%; border: 6px solid #fefce8; border-top-color: #eab308; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;">
+                        <span style="color: #eab308; font-weight: bold;">60%</span>
+                    </div>
+                    <span style="font-size: 0.8rem; color: #64748b;">Last 15 days</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Operation Features (Blood Bank, Capacity) - Kept as functional tools -->
+    <h3 style="color: #1e293b; margin-bottom: 1rem;">Operational Tools</h3>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+        <!-- Blood Bank Widget -->
+        <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0; color: #ef4444;"><i class="fas fa-burn"></i> Blood Bank</h3>
+                <a href="{{ url_for('blood_bank') }}" style="font-size: 0.8rem; color: #ef4444;">Manage</a>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                {% for group, data in blood_stock.items() %}
+                <span
+                    style="background: {{ '#fef2f2' if data.status != 'Available' else '#f0fdf4' }}; 
+                             color: {{ '#dc2626' if data.status != 'Available' else '#16a34a' }}; 
+                             padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid currentColor;">
+                    {{ group }}: {{ data.units }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Capacity Widget -->
+        <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+            <h3 style="margin: 0 0 1rem 0; color: #10b981;"><i class="fas fa-procedures"></i> Ward Capacity</h3>
+            {% for ward, status in capacity.items() %}
+            <div style="margin-bottom: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.2rem;">
+                    <span>{{ ward }}</span>
+                    <span style="font-weight: bold;">{{ status.occupied }}/{{ status.total }}</span>
+                </div>
+                <div style="background: #e5e7eb; height: 6px; border-radius: 3px; overflow: hidden;">
+                    <div
+                        style="background: {{ '#ef4444' if status.status == 'Critical' else '#10b981' }}; height: 100%; width: {{ (status.occupied / status.total) * 100 }}%;">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // User Growth Chart
+        const ctx = document.getElementById('userChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Registered Users',
+                    data: [12, 19, 3, 5, 2, 3, 10, 15, 20, 25, 30, 45], // Mock data
+                    backgroundColor: [
+                        '#10b981', '#34d399', '#ef4444', '#f59e0b', '#10b981', '#34d399',
+                        '#ef4444', '#f59e0b', '#10b981', '#34d399', '#ef4444', '#f59e0b'
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                    x: { grid: { display: false } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    });
+</script>
+{% endblock %}

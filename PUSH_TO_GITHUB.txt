@@ -1,0 +1,20 @@
+# Commands to Push MedTrack to GitHub as MedTrack1
+
+# The repository remote has already been configured to:
+# https://github.com/Ruthrarohith/MedTrack1.git
+
+# After creating the repository on GitHub (https://github.com/new),
+# run this command to push your code:
+
+git push -u origin main
+
+# If you encounter authentication issues, you may need to:
+# 1. Use a Personal Access Token instead of password
+# 2. Or configure SSH keys
+
+# Alternative: Force push if needed
+# git push -u origin main --force
+
+# To verify the push was successful:
+git remote -v
+git log --oneline -5

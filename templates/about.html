@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-panel" style="max-width: 900px; margin: 2rem auto; padding: 3rem;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 class="text-gradient">About MedTrack</h2>
+        <p style="color: #6b7280; font-size: 1.1rem;">Revolutionizing Hospital Management through Technology.</p>
+    </div>
+
+    <div style="margin-bottom: 4rem;">
+        <h3
+            style="color: #1f2937; margin-bottom: 1rem; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 0.5rem;">
+            Our Mission</h3>
+        <p style="color: #4b5563; line-height: 1.8; margin-bottom: 1rem;">
+            Welcome to <strong>MedTrack</strong>, your advanced partner in modern healthcare management. In an era where
+            digital transformation is paramount, MedTrack bridges the gap between patient care and administrative
+            efficiency. Our platform is designed to seamlessly integrate appointment scheduling, medical record
+            management, and AI-driven health analytics into one intuitive interface.
+        </p>
+        <p style="color: #4b5563; line-height: 1.8; margin-bottom: 1rem;">
+            Built on a robust <strong>AWS Cloud Architecture</strong>, MedTrack leverages the power of <em>EC2</em> for
+            reliable compute performance and <em>DynamoDB</em> for high-speed, scalable data storage. Security is at our
+            core—utilizing <em>AWS IAM</em> to ensure that sensitive patient data remains protected and accessible only
+            to authorized personnel.
+        </p>
+        <p style="color: #4b5563; line-height: 1.8;">
+            Whether you are a patient seeking convenient care or a doctor managing a busy schedule, MedTrack empowers
+            you with real-time insights, secure document vaults, and smart diagnostic tools, making healthcare more
+            accessible and efficient for everyone.
+        </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+        <div>
+            <h3 style="color: #1f2937; margin-bottom: 1.5rem;">Platform Leads</h3>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <div
+                    style="width: 48px; height: 48px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 600;">Ruthrarohith</div>
+                    <div style="font-size: 0.8rem; color: #6b7280;">Lead Developer & Architect</div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 style="color: #1f2937; margin-bottom: 1.5rem;">Powered By</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span
+                    style="padding: 0.5rem 1rem; background: #ecfdf5; color: #059669; border-radius: 99px; font-size: 0.8rem; border: 1px solid #10b981;">
+                    Flask Framework</span>
+                <span
+                    style="padding: 0.5rem 1rem; background: #ecfdf5; color: #059669; border-radius: 99px; font-size: 0.8rem; border: 1px solid #10b981;">
+                    AWS EC2</span>
+                <span
+                    style="padding: 0.5rem 1rem; background: #ecfdf5; color: #059669; border-radius: 99px; font-size: 0.8rem; border: 1px solid #10b981;">
+                    DynamoDB</span>
+                <span
+                    style="padding: 0.5rem 1rem; background: #ecfdf5; color: #059669; border-radius: 99px; font-size: 0.8rem; border: 1px solid #10b981;">
+                    CloudWatch</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

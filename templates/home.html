@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to MedTrack</h1>
+    <p>Your journey to better health starts here. Comprehensive care management for patients and doctors.</p>
+
+    <!-- Only show login buttons if NOT logged in -->
+    {% if not session.get('user_id') %}
+    <div style="margin-top: 2rem;">
+        <a href="{{ url_for('signup') }}" class="btn-primary" style="padding: 1rem 2rem; font-size: 1.2rem;">Get
+            Started</a>
+        <a href="{{ url_for('login') }}" class="btn-primary"
+            style="background: white; color: var(--primary-color) !important; border: 1px solid var(--primary-color); margin-left: 1rem; padding: 1rem 2rem; font-size: 1.2rem;">Login</a>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 4rem;">
+        <img src="{{ url_for('static', filename='images/hospital_hero.png') }}" alt="MedTrack Hospital"
+            class="img-responsive" style="box-shadow: var(--shadow-xl); border: 4px solid white;">
+    </div>
+</section>
+
+<div class="card-grid">
+    <!-- Patient Tile -->
+    <a href="{{ url_for('patient_dashboard') if session.get('user_role') == 'patient' else url_for('login') }}"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card" style="text-align: center; height: 100%; transition: transform 0.3s ease; cursor: pointer;"
+            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <img src="{{ url_for('static', filename='images/icon_patient.png') }}" alt="Patient Icon"
+                style="width: 64px; height: 64px; margin-bottom: 1rem;">
+            <h3>For Patients</h3>
+            <p style="color: var(--text-light);">Track your health journey, upload reports securely, and book
+                appointments with ease.</p>
+        </div>
+    </a>
+
+    <!-- Doctor Tile -->
+    <a href="{{ url_for('doctor_dashboard') if session.get('user_role') == 'doctor' else url_for('login') }}"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card" style="text-align: center; height: 100%; transition: transform 0.3s ease; cursor: pointer;"
+            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <img src="{{ url_for('static', filename='images/icon_doctor.png') }}" alt="Doctor Icon"
+                style="width: 64px; height: 64px; margin-bottom: 1rem;">
+            <h3>For Doctors</h3>
+            <p style="color: var(--text-light);">Manage patient records, review AI-assisted diagnostics, and streamline
+                your workflow.</p>
+        </div>
+    </a>
+
+    <!-- AI Tile -->
+    <a href="{{ url_for('ai_dashboard') if session.get('user_id') else url_for('login') }}"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card" style="text-align: center; height: 100%; transition: transform 0.3s ease; cursor: pointer;"
+            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <img src="{{ url_for('static', filename='images/icon_ai.png') }}" alt="AI Icon"
+                style="width: 64px; height: 64px; margin-bottom: 1rem;">
+            <h3>AI Powered</h3>
+            <p style="color: var(--text-light);">Leverage cutting-edge AI analysis for preliminary report insights and
+                health tracking.</p>
+        </div>
+    </a>
+</div>
+{% endblock %}

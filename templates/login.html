@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div style="display: flex; gap: 2rem; max-width: 900px; margin: 4rem auto; align-items: stretch;">
+
+    <!-- Graphic Side -->
+    <div
+        style="flex: 1; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: var(--radius-lg); min-height: 400px; display: none; align-items: center; justify-content: center; color: white; padding: 2rem; @media (min-width: 768px) { display: flex; }">
+        <div style="text-align: center;">
+            <img src="{{ url_for('static', filename='medtrack_logo.png') }}" alt="MedTrack"
+                style="height: 80px; margin-bottom: 1rem; filter: brightness(0) invert(1);">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Welcome Back!</h2>
+            <p>Access your personalized health dashboard and stay connected.</p>
+        </div>
+    </div>
+
+    <!-- Login Form Side -->
+    <div class="card" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+        <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Sign In</h2>
+
+        <form method="POST">
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" placeholder="e.g. patient@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
+
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="{{ url_for('signup') }}"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                    Don't have an account? Create one
+                </a>
+            </div>
+
+            <div
+                style="text-align: center; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <a href="{{ url_for('admin_login') }}"
+                    style="font-size: 0.8rem; color: var(--text-light); text-decoration: none;">
+                    System Administrator?
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
